@@ -1,0 +1,124 @@
+@import url("//fonts.googleapis.com/css?family=Titillium+Web");
+html, body {
+  background-color: #666;
+  font-family: "Titillium Web", arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+button, input, textarea {
+  appearance: none;
+  background: none;
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+#container {
+  display: block;
+  width: 436px;
+}
+
+form {
+  float: left;
+  margin: 31px 0 0 31px;
+  overflow: auto;
+  padding-bottom: 13px;
+  position: relative;
+  margin-left: 500px;
+}
+
+button[type="submit"], button[type="reset"] {
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  color: #aaa;
+  cursor: pointer;
+  float: right;
+  font-family: "Titillium Web", arial, sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  margin: 10px 0 0 15px;
+  padding: 5px 20px;
+  text-decoration: none;
+  transition: all 160ms linear;
+}
+
+button[type="submit"]:hover, button[type="reset"]:hover {
+  background-color: #222;
+}
+
+input[type="text"], input[type="email"] {
+  background-color: #333 !important;
+  border: none;
+  border-radius: 5px;
+  color: #aaa;
+  font-family: "Titillium Web", arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  height: 43px;
+  margin: 0 0 14px;
+  overflow: auto;
+  padding: 8px 0 8px 13px;
+  width: 416px;
+}
+
+input[type="email"]:required:invalid, input[type="email"]:focus:invalid {
+  background-image: url("http://www.markhillard.com/images/lock.svg");
+  background-position: right 8px center;
+  background-repeat: no-repeat;
+  background-size: 23px 23px;
+  box-shadow: none;
+}
+
+input[type="email"]:required:valid, input[type="email"]:focus:valid {
+  background-image: url("http://www.markhillard.com/images/unlock.svg");
+  background-position: right 8px center;
+  background-repeat: no-repeat;
+  background-size: 23px 23px;
+}
+
+textarea {
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  clear: left;
+  color: #aaa;
+  display: block;
+  float: left;
+  font-family: "Titillium Web", arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  height: 241px;
+  margin: 0 0 4px;
+  overflow: auto;
+  padding: 8px 0 8px 13px;
+  resize: none;
+  width: 416px;
+}
+
+.invalid, .success, .error, .reset {
+  display: none;
+  float: left;
+  margin: 9px 0 0 13px;
+  position: absolute;
+  top: 360px;
+}
+
+.invalid, .error {
+  color: #f5b2b6;
+}
+
+.success, .reset {
+  color: #d7f5b2;
+}
