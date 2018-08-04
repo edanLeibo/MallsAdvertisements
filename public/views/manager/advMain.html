@@ -1,11 +1,69 @@
-<script src="https://d3js.org/d3.v3.min.js"></script>
-<script src="javascript/js/liquidFillGauge.js"></script>
 
-<div class="container">
+<style>
+.bubbleChart {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    height: 500px;
+}
+</style>
 
-  <div class="row mtbox" ng-controller="viewAdvCtrl">
+<div class="container" ng-controller="viewAdvCtrl">
+  <div class="bubbleChart"></div>
+  <div class="row mtbox" >
     
+
+    <div class="col-md-12 col-sm-12 box0">
+      <div class="box1">
+        <h3 style="color: green;">Server is up and running!</h3>
+      </div>
+    </div>
+
   </div>
-  <!-- /row kkkkkmt -->
+  <!-- /row mt -->
+
+  <div class="row mt">
+    <div class="col-md-5 col-sm-4 mb">
+      <div class="white-panel pn">
+        <div class="white-header">
+          <h5>Most recent template by adverts</h5>
+        </div>
+
+        <div class="centered">
+          <svg id="groupByTemplate" width="400" height="200"></svg>
+        </div>
+      </div>
+    </div>
+    <!-- /col-md-4 -->
+  </div>
+  <!-- /row -->
+
+  <div class="row mt">
+
+
+    <!-- /col-md-4 -->
+
+    <div class="col-md-5 col-sm-4 mb">
+      <div class="white-panel pn">
+        <div class="white-header">
+          <h5>Tweeter</h5>
+        </div>
+        <p> <a class="twitter-timeline" href="https://twitter.com/blockchain">Tweets by Blockchain Community</a></p>
+
+        <textarea class="form-control" maxlength="256" id="my-tweet"></textarea>
+        <div class="centered">
+          <div class="">
+            <br>
+            <button class="btn-outline-primary" ng-click="tweetTweet()">Tweet</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /col-md-4 -->
+
+  </div>
+  <!-- /row -->
+
 
 </div>
+
