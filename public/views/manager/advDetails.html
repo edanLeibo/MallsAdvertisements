@@ -5,119 +5,124 @@
     }
 
     td ul li {
-        overflow: hidden;
+        overflow: auto;
         white-space: nowrap;
         width: 90px;
     }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div class="container">
-        <h3><i class="fa fa-angle-right"></i> Advertise Details</h3>
-        <div class="row mt">
-                <div class="content-panel"style="width: 100%">
-                    <!--Search Panel-->
-                    <div class="row">
-                        <h3><label class="col-sm-1 offset-md-1 control-label"> Filter:</label></h3>
-                        <div class="col-md-2">
-                            <div class="input-group-btn search-panel">
-                                <input type="text" placeholder="Search by id.." class="form-control" ng-model="Sid">
-                            </div>
+<div class="container-fluid">
+    <h3 class="centered"><i class="fas fa-table"></i> Advertisement Data</h3>
+
+    <!--Search Panel-->
+    <div class="row">
+        <h3><label class="col-lg-1 control-label">Data Filter</label></h3>
+
+        <div class="col-lg-3">
+            <div class="input-group-btn search-panel">
+                <input type="text" placeholder="Message name" class="form-control"
+                       ng-model="Sname">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="input-group-btn search-panel">
+                <input type="text" placeholder="Show Duration" class="form-control"
+                       ng-model="SshowTime">
+            </div>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="input-group-btn search-panel">
+                <input type="text" placeholder="Template" class="form-control"
+                       ng-model="Stemplate">
+            </div>
+        </div>
+
+        <div class="col-lg-1">
+            <div class="input-group-btn search-panel">
+                <input type="text" placeholder="Screen Num" class="form-control" ng-model="Sid">
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-danger" style="background-color:#531212; border-color: black"><a ng-href="#!advCreate" style="color:white"><i class="fas fa-plus-square" aria-hidden="true"> Add Message</i></a></button>
+
+
+    <!-- Search Panel-->
+
+    <section id="unseen">
+        <table class="table table-bordered table-hover table-striped table-dark">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Images List</th>
+                    <th>Ad Content</th>
+                    <th>Screen Nums</th>
+                    <th>Template</th>
+                    <th>Show Duration</th>
+                    <th>Hours</th>
+                    <th>Days</th>
+                    <th>Date Limits</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="data in msgs| filter: {name:Sname} | filter:{id:Sid} | filter:{template:Stemplate} | filter:{showTime:SshowTime}">                     
+                    <td>{{data.name}}</td>
+                    <td>
+                        <ul class="noPadding">
+                            <li ng-repeat="y in data.images track by $index"><a ng-href="{{y}}" style="color: white">Link {{$index+1}}</a>
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="noPadding">
+                            <li ng-repeat="y in data.text track by $index">
+                                {{$index+1}}. {{y}}
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="noPadding">
+                            <li ng-repeat="y in data.id track by $index">
+                                Screen #{{y}}
+                            </li>
+                        </ul>
+                    </td>
+
+                    <td>{{data.template}}</td>
+                    <td>{{data.showTime}} sec</td>
+                    <td>
+                        <ul class="noPadding" ng-repeat="(y,v) in data.days">
+                            <li>{{v[0]}}:00 to {{v[1]}}:00</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="noPadding" ng-repeat="(y,v) in data.days">
+                            <li>{{y}}</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="noPadding">
+                            <li ng-repeat="y in data.date track by $index">{{y | date: 'd MMMM yyyy'}}</li>
+                        </ul>
+                    </td>
+
+                    <td>
+                        <div style="margin-bottom: 5px">
+                            <a ng-href="#!advEdit/{{data._id}}">
+                                <button type="button" class="btn btn-danger">Edit</button>
+                            </a>
                         </div>
-                        <div class="col-md-3">
-                            <div class="input-group-btn search-panel">
-                                <input type="text" placeholder="Search by name.." class="form-control"
-                                       ng-model="Sname">
-                            </div>
-                        </div>
+                        <button type="button" class="btn btn-danger" ng-click="delete(data._id)">Delete</i>
+            </button>
+            </td>
+        </tr>
 
-                        <div class="col-md-3">
-                            <div class="input-group-btn search-panel">
-                                <input type="text" placeholder="Search by template.." class="form-control"
-                                       ng-model="Stemplate">
-                            </div>
-                        </div>
+    </tbody>
+</table>
+</section>
 
 
-                    </div>
-                    <br>
-                    <!--End Search Panel-->
-
-                    <section id="unseen">
-                        <table class="table  table-bordered table-striped table-condensed ">
-                            <thead>
-                            <tr>
-                                <th></th>
-                                <th>Name</th>
-                                <th>Screen Id</th>
-                                <th>Text</th>
-                                <th>Images</th>
-                                <th>Template</th>
-                                <th>ShowTime</th>
-                                <th>Dates</th>
-                                <th>Days</th>
-                                <th>Hours</th>
-                                <th>
-                                    <button><a ng-href="#!advCreate"><i class="fa fa-plus" aria-hidden="true">
-                                        Add</i></a></button>
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="data in msgs| filter: {name:Sname} | filter:{id:Sid} | filter:{template:Stemplate} ">
-                                <td>#{{$index+1}}</td>
-                                <td>{{data.name}}</td>
-                                <td>
-                                    <ul class="noPadding">
-                                        <li ng-repeat="y in data.id track by $index"><a href="#"><i class="fa fa-tv" style="font-size:12px;color:red"></i></a>
-                                            {{y}}
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <ul class="noPadding">
-                                        <li ng-repeat="y in data.text track by $index"><i class="fa fa-circle"
-                                                                                          style="font-size:4px"></i>
-                                            {{y}}
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <ul class="noPadding">
-                                        <li ng-repeat="y in data.images track by $index"><a ng-href="{{y}}">Image{{$index+1}}</a>
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td>{{data.template}}</td>
-                                <td>{{data.showTime}}</td>
-                                <td>
-                                    <ul class="noPadding">
-                                        <li ng-repeat="y in data.date track by $index">{{y | date: 'dd-MM-yyyy'}}</li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <ul class="noPadding" ng-repeat="(y,v) in data.days">
-                                        <li>{{y}}</li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <ul class="noPadding" ng-repeat="(y,v) in data.days">
-                                        <li>{{v[0]}}-{{v[1]}}</li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <a ng-href="#!advEdit/{{data._id}}">
-                                        <button><i class="fa fa-pencil" style="font-size:20px;color:green"></i></button>
-                                    </a>
-                                    <button ng-click="delete(data._id)"><i class="fa fa-trash-o"
-                                                                           style="font-size:20px;color:red"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </section>
-                </div><!-- /content-panel -->
-            </div><!-- /col-lg-4 -->
 
 
 </div>
