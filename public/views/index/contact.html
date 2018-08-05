@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="CSS/new.css">
+<div id="container">
+    <form method="post" action="mail.mf">
+        <input type="text" value="Name">
+        <input type="email" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" value="Email Address" required>
+        <textarea>Comments / Questions?</textarea>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+        <div class="invalid">Invalid Email!</div>
+        <div class="success">Email Sent!</div>
+        <div class="error">Error!</div>
+        <div class="reset">Reset!</div>
+    </form>
+</div>

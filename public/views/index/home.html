@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Index</title>
+  <!--Angular Section-->
+  <script src="javascript/libs/angular.js"></script>
+  <script src="javascript/libs/angular-route.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="../../CSS/bootstrap.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.3/js/tether.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script src="app.js"></script>
+  <script src="../../controllers/AdvPublicCtrl.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="../../javascript/manageMessages.js"></script>
+  <script src="../../javascript/contact.js"></script>
+  <script src="../../service/publicServices.js"></script>
+  <script src="../../controllers/ScreensCtrl.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+  <!-- Custom styles for this template -->
+  <link href="CSS/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: black
+    }
+
+
+  </style>
+  
+
+
+
+</head>
+<style>
+  #rcorners2 {
+    border-radius: 10px;
+  }
+</style>
+
+<body ng-app="showAdv" ng-controller="publicCtrl">
+
+  <!--</nav>-->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark" >
+   <div class="navbar-collapse collapse w-100 order-0 order-md-0 dual-collapse2">
+    <ul class="nav navbar-nav" >
+      <li class="active">
+        <a style="color: white" href="#!/" aria-selected="true">Home</a>
+      </li>
+      <li class="active">
+        <a style="color: white" href="manager"  aria-selected="false">Manager</a>
+      </li>
+      <li class="active">
+        <a style="color: white" href="#!/contact" aria-selected="true">Contact</a>
+      </li>
+    </ul>
+	</div>
+	
+
+	
+	 <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+		
+            <ul class="nav navbar-nav navbar-right">
+			<li class="active">
+              <a style="color: white"  href="#!screen=1">Channel 1</a>
+			  </li>
+			<li class="active">
+              <a style="color: white"  href="#!screen=2" >Channel 2</a>
+			  </li>
+			<li class="active">
+              <a style="color: white"  href="#!screen=3" >Channel 3</a>
+			  
+			</li>
+            </ul>
+
+	</div>
+	
+  </nav>
+  
+
+
+
+  
+  
+
+  <div class="container-fluid text-center mb-2">
+    <div class="row content">
+      <!--Left SideBar-->
+      <div class="col-sm-2">
+
+      </div>
+      <!--Angular Page Content-->
+      <div class="col-sm-8 text-center">
+        <br>
+
+        <ng-view></ng-view>
+        <br>
+        <!--Right SideBar-->
+        <div class="col-sm-2">
+          <div class="well" style="background: black; border:black">
+
+          </div>
+        </div>
+      </div>
+    </div>
+	
+	
+
+    <!--Ynet section-->
+    <div class="container">
+      <div id="rcorners2" class="bg-warning ">
+        <div class="row">
+          <div class="col-1">
+          </div>
+          <div class="col-10">
+            <marquee direction="left" class="float-right" style="font-size: 20px;">
+              <span ng-repeat="items in news">  
+			  <span ng-repeat="item in items"> 
+			  <span ng-repeat="deal in item"> Name: {{deal.short_title}} Price: {{deal.price}} $ Value: {{deal.value}} $  &nbsp;</span>
+			  </span>
+			  </span>
+            </marquee>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <canvas id="myCanvas" width="578" height="400"></canvas>
+    <script>
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+      var imageObj = new Image();
+
+      imageObj.onload = function() {
+        context.drawImage(imageObj, 69, 50);
+      };
+      imageObj.src = 'http://f2d62a308d3c313ac136-fe453cfe00977a743e98d480a2f68fee.r14.cf1.rackcdn.com/images/panels-overview-1.jpg';
+    </script>
+	
+	
+
+
+  </div>
+  </div>
+
+  <br>
+  <footer class="page-footer font-small blue pt-4 mt-4" style="background-color:white">
+    <div class="footer-copyright py-3 text-center">
+      <div class="container-fluid">
+        © 2018 Tomer Adam and Edan
+      </div>
+    </div>
+
+
+  </footer>
+
+
+
+</body>
+
+</html>
