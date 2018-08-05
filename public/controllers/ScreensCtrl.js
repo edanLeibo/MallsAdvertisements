@@ -4,8 +4,6 @@ function screensCtrl($scope,$routeParams,publicServices) {
     var id = $routeParams.id;
     start(id)
     publicServices.UpdateScreenIdHistory(id);
-
-
 }
 
 

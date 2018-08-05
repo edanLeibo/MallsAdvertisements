@@ -11,23 +11,23 @@ $scope.count = 1
 
     $scope.delete = function (_id) {
         swal({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Do you want to delete the message?',
+            text: "Once you delete you can't go back",
             type: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonColor: '#531212',
+            cancelButtonColor: '#531212',
+            confirmButtonText: 'Yes'
         }).then(function (result) {
             if(result.value)
             {
                 swal(
                     'Deleted!',
-                    'Your file has been deleted.',
+                    'Message was removed',
                     'success'
                 );
                 advDetailsService.deleteAdvert(_id).then(function () {
-                    $location.path('/manager');
+                    $location.path('');
                     $scope.$apply();
 
                 });

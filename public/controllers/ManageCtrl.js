@@ -1,18 +1,116 @@
 "use strict";
 
-function manageCtrl($scope, statsServices) {
+function manageCtrl($scope, statsServices, advDetailsService) {
+    
     init();
-
+    function createBubble() {
+  var bubbleChart = new d3.svg.BubbleChart({
+    supportResponsive: true,
+    //container: => use @default
+    size: 600,
+    //viewBoxSize: => use @default
+    innerRadius: 600 / 4,
+    //outerRadius: => use @default
+    radiusMin: 600/8,
+    //radiusMax: use @default
+    //intersectDelta: use @default
+    //intersectDelta: use @default
+      intersectDelta: 20,
+    //intersectInc: use @default
+    //circleColor: use @default
+    data: {
+      items: [
+        {text: "Screen with most ads", count: $scope.recommendedScreen},
+        {text: "Amount of templates", count: $scope.templatesLen},
+        {text: "Average show time", count: $scope.avgShowTime},
+        {text: "Amount of messages", count: $scope.msgAmount},
+        {text: "D", count: "12"},
+        {text: "Python", count: "170"},
+        {text: "C/C++", count: "382"},
+        {text: "Pascal", count: "10"},
+        {text: "Something", count: "170"},
+      ],
+      eval: function (item) {return item.count;},
+      classed: function (item) {return item.text.split(" ").join("");}
+    },
+    plugins: [
+      {
+        name: "central-click",
+        options: {
+          text: "(See more detail)",
+          style: {
+            "font-size": "12px",
+            "font-style": "italic",
+            "font-family": "Source Sans Pro, sans-serif",
+            //"font-weight": "700",
+            "text-anchor": "middle",
+            "fill": "white"
+          },
+          attr: {dy: "65px"},
+          centralClick: function() {
+            alert("Here is more details!!");
+          }
+        }
+      },
+      {
+        name: "lines",
+        options: {
+          format: [
+            {// Line #0
+              textField: "count",
+              classed: {count: true},
+              style: {
+                "font-size": "28px",
+                "font-family": "Source Sans Pro, sans-serif",
+                "text-anchor": "middle",
+                fill: "white"
+              },
+              attr: {
+                dy: "0px",
+                x: function (d) {return d.cx;},
+                y: function (d) {return d.cy;}
+              }
+            },
+            {// Line #1
+              textField: "text",
+              classed: {text: true},
+              style: {
+                "font-size": "14px",
+                "font-family": "Source Sans Pro, sans-serif",
+                "text-anchor": "middle",
+                fill: "white"
+              },
+              attr: {
+                dy: "20px",
+                x: function (d) {return d.cx;},
+                y: function (d) {return d.cy;}
+              }
+            }
+          ],
+          centralFormat: [
+            {// Line #0
+              style: {"font-size": "50px"},
+              attr: {}
+            },
+            {// Line #1
+              style: {"font-size": "30px"},
+              attr: {dy: "40px"}
+            }
+          ]
+        }
+      }]
+  });
+}
     function init() {
-        statsServices.getViewsHistory().then(function (value) {
+        statsServices.getViewsHistory()
+          .then(function (value) {
             var screensHistory = value.data[0].screens;
              screensHistory.sort(function (a,b) {
                 return b.count- a.count;
             })
             $scope.recommendedScreen = screensHistory[0].id;
-        })
-
-        statsServices.getGroupByTemplate().then(function (value) {
+        }).then(statsServices.getGroupByTemplate)
+          .then(function (value) {
             var data = value.data;
             $scope.templatesLen = data.length;
             var series = d3v4.stack()
@@ -80,12 +178,15 @@ function manageCtrl($scope, statsServices) {
                     return d[1];
                 });
             }
-        })
-
-        statsServices.getAvgByShowtime().then(function (value) {
-            var avg = value.data[0].avg
-            var gauge1 = loadLiquidFillGauge("fillgauge5", avg);
-        })
+        }).then(statsServices.getAvgByShowtime)
+          .then(function (value) {
+            $scope.avgShowTime=value.data[0].avg;
+            //var avg = value.data[0].avg
+            //var gauge1 = loadLiquidFillGauge("fillgauge5", avg);
+        }).then(advDetailsService.getAllAdvert)
+          .then(function (value) {
+            $scope.msgAmount = value.data.length;})
+          .then(createBubble);
 
         initMap();
 
@@ -123,15 +224,7 @@ function manageCtrl($scope, statsServices) {
 
     }
 
-    $scope.tweetTweet = function () {
-        var url = "https://twitter.com/intent/tweet"
-        var text = document.getElementById("my-tweet").value;
-        window.open(url + "?text=" + text);
-
-
-    }
-
 }
 
 
-angular.module('manageAdv').controller('manageCtrl', ['$scope', 'statsServices', manageCtrl]);
+angular.module('manageAdv').controller('manageCtrl', ['$scope', 'statsServices','advDetailsService', manageCtrl]);

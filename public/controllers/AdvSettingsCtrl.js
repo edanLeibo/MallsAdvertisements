@@ -24,6 +24,7 @@ function advSettingsCtrl($scope, $location, $routeParams,advDetailsService,FileU
 
     function setIds(settings) {
         settings.ids = [];
+        settings.ids = [];
 
         for(var i= 0 ;i< $scope.numId;i++){
             settings.ids[i] = i + 1;

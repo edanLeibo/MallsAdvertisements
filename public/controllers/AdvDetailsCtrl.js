@@ -139,8 +139,8 @@
                 text: "You won't be able to revert this!",
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#531212',
+                cancelButtonColor: '#531212',
                 confirmButtonText: 'Yes, delete it!'
             }).then(function (result) {
                 if (result.value) {
