@@ -1,79 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Custom Adverts</title>
-    </head>
-    <style>
-        #test2 {
-            border: 15px solid black;
-            height: 600px;
-            background-image: url("https://media.giphy.com/media/i1oyyhtnshpXW/giphy.gif");
-            margin-bottom: 0;
-            overflow: scroll;
-            
-        }
-        .form-panel {
-            margin: 0 auto;
-            border: 15px solid black;
-            background-color: #343a40;
 
-        }
-        #save-button {
-            background-color: #531212;
-            height: 75%;
-            margin-top: 28px;
-        }
-    </style>
-    <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div id="test2">
-                        <div class="myBody" id="myBody"></div>
-                    </div>
-                </div>
+<style>
+    #test2 {
+        border: 15px solid black;
+        height: 600px;
+        background-image: url("https://media.giphy.com/media/i1oyyhtnshpXW/giphy.gif");
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin-bottom: 0;
+        overflow: scroll;
+
+    }
+    .form-panel {
+        margin: 0 auto;
+        border: 15px solid black;
+        background-color: #343a40;
+
+    }
+    #save-button {
+        background-color: #531212;
+        height: 75%;
+        margin-top: 28px;
+    }
+    .row{
+        margin:0;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="test2">
+                <div class="myBody" id="myBody"></div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="form-panel">
-                        <h4 class="mb centered">Advertisments Simulator</h4>
-                        <form class="form-horizontal style-form" method="get">
-                            <div class="form-row">
-                                <div class="col-md-2 mb-3">
-                                    <label>Screen #</label>
-                                    <select class="custom-select " name="id" ng-model="selected">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                </div>
-                                 <div class="col-md-2 mb-3">
-                                    <label>Hour</label>
-                                    <input class="form-control" type="number" name="hour">
-                                </div>
-
-                                <div class="col-md-3 mb-3">
-                                    <label>Date</label>
-                                    <input class="form-control" type="date" name="date">
-                                </div>
-
-                               
-
-
-                                <button class="btn btn-info" id="save-button"
-                                        onclick="customStart(form.id.value,form.date.value,form.hour.value)" type="submit">
-                                    <i class="fas fa-play">  Play</i>
-                                </button>
-
-
-                            </div>
-                        </form>
-                    </div>
-                </div><!-- col-lg-12-->
-            </div><!-- /row -->
         </div>
-    </body>
-</html>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-panel">
+                <h4 class="mb centered">Advertisments Simulator</h4>
+                <form class="form-horizontal style-form" method="get">
+                    <div class="form-row">
+                        <div class="col-md-2 mb-3">
+                            <label>Screen #</label>
+                            <select class="custom-select " name="id" ng-model="selected">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label>Time</label>
+                            <input class="form-control" type="number" name="hour">
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label>Date</label>
+                            <input class="form-control" type="date" name="date">
+                        </div>
+
+                        <button class="btn btn-info" id="save-button"
+                                onclick="customStart(form.id.value,form.date.value,form.hour.value)" type="submit">
+                            <i class="fas fa-play">  Play</i>
+                        </button>
+
+
+                    </div>
+                </form>
+            </div>
+        </div><!-- col-lg-12-->
+    </div><!-- /row -->
+</div>
